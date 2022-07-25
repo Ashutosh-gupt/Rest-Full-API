@@ -16,11 +16,25 @@ let server = http.createServer(function(req, res) {
     // get the path
     let path = parseURL.pathname;
     let trimmedPath = path.replace(/^\/+|\/+$/g, '');
+
     // Send the response
     res.end('hello world\n');
 
+    // getting the method of http request
+    let methods = req.method.toLocaleLowerCase();
+
+    // geting the query string as an object
+    let querystringobject = JSON.stringify(parseURL.query);
+
     //log the Request path
-    console.log('Request recived on path : ' + trimmedPath);
+    console.log(
+        'Request recived on path : ' +
+        trimmedPath +
+        ' with this method : ' +
+        methods +
+        ' and with this query string parameter : ',
+        querystringobject
+    );
 });
 
 // start the server, and have it listen in port 3000;
